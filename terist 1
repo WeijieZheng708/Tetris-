@@ -22,6 +22,8 @@ public:
     void PlaceShapeNext();//将方块放置在小棋盘上
     void PlaceShapeMain();//将方块放置在主棋盘上
 private:
+    int SetShapeColor(int);
+    shape* PlaceShape(board &, int, int, int);
     board MainBoard;
     board NextBoard;
     int m_ishape;
