@@ -1,0 +1,31 @@
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+
+#include "public.h"
+#include "board.h"
+#include "cell.h"
+#include "shape.h"
+#include "oshape.h"
+#include "sshape.h"
+#include "zshape.h"
+#include "tshape.h"
+#include "ishape.h"
+#include "jshape.h"
+#include "lshape.h"
+
+class gameEngine
+{
+public:
+    gameEngine(int, int, int, int);
+    board& GetMainBoard() { return MainBoard; }//创建主棋盘
+    board& GetNextBoard() { return NextBoard; }//创建小棋盘
+    void PlaceShapeNext();//将方块放置在小棋盘上
+    void PlaceShapeMain();//将方块放置在主棋盘上
+private:
+    board MainBoard;
+    board NextBoard;
+    int m_ishape;
+    shape* tracked_shape;
+  };
+
+#endif // GAME_ENGINE_H
