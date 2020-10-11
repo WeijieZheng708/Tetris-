@@ -1,0 +1,48 @@
+#ifndef GAME_ENGINE_H
+#define GAME_ENGINE_H
+
+#include "public.h"
+#include "board.h"
+#include "cell.h"
+#include "shape.h"
+#include "oshape.h"
+#include "sshape.h"
+#include "zshape.h"
+#include "tshape.h"
+#include "ishape.h"
+#include "jshape.h"
+#include "lshape.h"
+
+class gameEngine
+{
+public:
+    gameEngine(int, int, int, int);
+    board& GetMainBoard() { return MainBoard; }//创建主棋盘
+    board& GetNextBoard() { return NextBoard; }//创建小棋盘
+    bool GetAbleDown() { return AbleDown; }//判断能否继续下落
+    void PlaceShapeNext();//将方块放置在小棋盘上
+    void PlaceShapeMain();//将方块放置在主棋盘上
+    void MoveDown();//下移
+    void MoveLeft();//左移
+    void MoveRight();//右移
+    void ClearRows();//清除已满行
+    int num_rows_cld();//记录清楚行
+    void rotate();//旋转方块
+    ~gameEngine();
+
+
+private:
+    void TraverseRows(int* cld_rows = NULL);
+    int SetShapeColor(int);
+    shape* PlaceShape(board &, int, int, int);
+    bool IsMoveable(int, int, bool);
+    void move(int, int);
+    board MainBoard;
+    board NextBoard;
+    int m_ishape;
+    shape* tracked_shape;
+    bool AbleDown;
+
+};
+
+#endif // GAME_ENGINE_H
